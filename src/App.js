@@ -1,6 +1,11 @@
-import Expenses from "./components/Expenses";
+import React from "react";
 
-function App() {
+import "./App.css";
+
+import Expenses from "./components/Expenses/Expenses";
+import NewExpense from "./components/Expenses/NewExpense";
+
+const App = () => {
   const expenses = [
     {
       title: "Health",
@@ -14,7 +19,7 @@ function App() {
     },
     {
       title: "Transport",
-      amount: "$4098",
+      amount: "$4059",
       date: new Date(),
     },
     {
@@ -24,12 +29,19 @@ function App() {
     },
   ];
 
+  const saveNewExpenseHandler = (newExpenseData) => {
+    const newExpense = { ...newExpenseData };
+    console.log(newExpense);
+    expenses.push(newExpense);
+    console.log(expenses);
+  };
+
   return (
     <div>
-      <h2>Let's do magic, together!</h2>
+      <NewExpense onAddExpense={saveNewExpenseHandler} />
       <Expenses items={expenses} />
     </div>
   );
-}
+};
 
 export default App;
